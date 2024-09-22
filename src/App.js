@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function App() {
   const [recetas, setRecetas] = useState([]);
+  const BASE_URL = "https://Backend_test_votos.up.railway.app";
 
   // Función para obtener las recetas desde el backend
   const fetchRecetas = () => {
