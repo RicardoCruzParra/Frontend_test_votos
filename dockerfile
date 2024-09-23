@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Compila la aplicación
-RUN npm run build
+RUN --mount=type=cache,id=s/05f37dcb-ca3d-4c70-9588-1bc184739187-/root/npm,target=/root/.npm npm install
 
 # Usa una imagen ligera de nginx para servir la aplicación
 FROM nginx:alpine
