@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala las dependencias
-RUN npm install
+RUN --mount=type=cache,id=s/05f37dcb-ca3d-4c70-9588-1bc184739187-/root/npm,target=/root/.npm npm install
 
 # Copia el resto de la aplicación
 COPY . .
 
 # Compila la aplicación
-RUN --mount=type=cache,id=s/05f37dcb-ca3d-4c70-9588-1bc184739187-/root/npm,target=/root/.npm npm install
+RUN npm run build
 
 # Usa una imagen ligera de nginx para servir la aplicación
 FROM nginx:alpine
