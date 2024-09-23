@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import RecetaList from './components/RecetaList';
 import RecetaForm from './components/RecetaForm';
 import axios from 'axios';
@@ -25,11 +26,38 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Gestión de Recetas</h1>
-      <RecetaForm onRecetaSubmit={handleRecetaSubmit} />
-      <RecetaList recetas={recetas} />
-    </div>
+    <Router>
+      <div className="App">
+        <h1>Gestión de Recetas</h1>
+        
+        {/* Links para navegar entre páginas */}
+        <nav>
+          <ul>
+            <li>
+              <Link to="/crear">Crear Receta</Link>
+            </li>
+            <li>
+              <Link to="/recetas">Ver Recetas</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Definimos las rutas */}
+        <Routes>
+          {/* Ruta para crear una receta */}
+          <Route 
+            path="/crear" 
+            element={<RecetaForm onRecetaSubmit={handleRecetaSubmit} />} 
+          />
+          
+          {/* Ruta para ver y votar recetas */}
+          <Route 
+            path="/recetas" 
+            element={<RecetaList recetas={recetas} setRecetas={setRecetas} />} 
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
