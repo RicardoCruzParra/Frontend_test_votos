@@ -9,14 +9,14 @@ function App() {
 
   // Función para obtener las recetas desde el backend
   const fetchRecetas = () => {
-    axios.get('/api/recetas')
+    axios.get('https://frontendtestvotos-production.up.railway.app//api/recetas')
       .then(response => setRecetas(response.data))
       .catch(error => console.error('Error al obtener las recetas:', error));
   };
 
   // Función para crear una receta
   const handleRecetaSubmit = (receta) => {
-    axios.post('/api/recetas', receta)
+    axios.post('https://frontendtestvotos-production.up.railway.app//api/recetas', receta)
       .then(() => fetchRecetas())
       .catch(error => console.error('Error al crear receta:', error));
   };
